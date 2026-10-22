@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lucas Sobrosa</title>
+  <meta name="description" content="Portfólio de Lucas Sobrosa: um site que funciona como um editor de motion design. Estudante de Sistemas de Informação (UFOP) e desenvolvedor em formação.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!--BODY-->
+<div class="app" id="app">
+
+  <!-- Barra superior: as composições funcionam como menu de navegação -->
+  <nav class="menubar" aria-label="Cenas">
+    <span class="brand"><i class="brand-mark" aria-hidden="true"></i>sobrosa.aep</span>
+    <div class="comp-tabs" id="compTabs"></div>
+    <span class="menu-hint">Espaço para reproduzir</span>
+  </nav>
+
+  <!-- Painel Projeto -->
+  <aside class="panel project" aria-label="Projeto">
+    <div class="panel-tab">Projeto</div>
+    <div class="panel-body">
+      <div class="proj-meta">
+        <span class="thumb" aria-hidden="true"></span>
+        <div><strong>Lucas Sobrosa</strong><br>1920 × 1080 (1,00)<br>Δ 0:00:22:00, 24,00 qps</div>
+      </div>
+      <div class="tree">
+        <div class="folder">Composições</div>
+        <ul id="compList"></ul>
+        <div class="folder">Stack</div>
+        <ul class="assets">
+          <li><i style="--c:var(--l-yellow)"></i>javascript.js<span>Script</span></li>
+          <li><i style="--c:var(--l-aqua)"></i>python.py<span>Script</span></li>
+          <li><i style="--c:var(--l-peach)"></i>Main.java<span>Script</span></li>
+          <li><i style="--c:var(--l-lav)"></i>algoritmos.cpp<span>Script</span></li>
+          <li><i style="--c:var(--l-red)"></i>index.html<span>Página</span></li>
+          <li><i style="--c:var(--l-pink)"></i>style.css<span>Estilo</span></li>
+          <li><i style="--c:var(--l-sea)"></i>webhooks.api<span>Integração</span></li>
+          <li><i style="--c:var(--l-blue)"></i>git<span>Versão</span></li>
+          <li><i style="--c:var(--l-lav)"></i>motion.aep<span>Projeto</span></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Viewer da composição -->
+  <main class="panel viewer" aria-label="Composição">
+    <div class="panel-tab">Composição: <span id="viewerName">Intro</span></div>
+    <div class="viewer-area" id="viewerArea">
+      <div class="stage" id="stage">
+        <div class="guides" aria-hidden="true"></div>
+
+        <!-- Cena 1: Intro -->
+        <section class="scene" data-scene="intro">
+          <p class="kicker" data-a="fade" data-d="0.2">Desenvolvedor em formação · motion designer</p>
+          <h1 class="hero-name" data-a="scale" data-d="0" data-dur="2.2" data-main aria-label="Lucas Sobrosa">
+            <span class="word" data-letters="0.3">Lucas</span>
+            <span class="word" data-letters="0.55">Sobrosa</span>
+          </h1>
+          <p class="hero-sub" data-a="up" data-d="1.4">Eu escrevo código como quem anima: cada quadro com intenção.</p>
+          <p class="hero-cta" data-a="fade" data-d="2.2">Role, use as setas ou clique nas cenas lá em cima para navegar.</p>
+        </section>
+
+        <!-- Cena 2: Sobre -->
+        <section class="scene" data-scene="sobre">
+          <h2 class="scene-title" data-a="left" data-d="0.1" data-main>Sobre mim</h2>
+          <div class="about-grid">
+            <p class="about-text" data-a="up" data-d="0.45">Estudo Sistemas de Informação na UFOP e trabalho remotamente com automação e integrações no Cartão de TODOS, conectando CRM, WhatsApp Business API e Meta. Foi resolvendo problemas reais de sistema que eu decidi: quero desenvolver software.</p>
+            <ul class="facts">
+              <li data-a="up" data-d="0.8"><b>2027</b>formatura em Sistemas de Informação</li>
+              <li data-a="up" data-d="0.95"><b>Remoto</b>desde março de 2026, com APIs e automação</li>
+              <li data-a="up" data-d="1.1"><b>Motion</b>1 ano de After Effects e Premiere</li>
+            </ul>
+          </div>
+          <ul class="chips" data-a="fade" data-d="1.4">
+            <li>JavaScript</li><li>Python</li><li>Java</li><li>C++</li><li>HTML e CSS</li><li>APIs e webhooks</li><li>Git</li>
+          </ul>
+        </section>
+
+        <!-- Cena 3: Projetos -->
+        <section class="scene" data-scene="projetos">
+          <h2 class="scene-title" data-a="left" data-d="0.1" data-main>Projetos</h2>
+          <div class="cards">
+            <a class="card" href="https://github.com/sobrosaa" target="_blank" rel="noopener" data-a="scale" data-d="0.4">
+              <span class="status live">Publicado</span>
+              <h3>Este portfólio</h3>
+              <p>Um site que é um editor de vídeo. Timeline, keyframes e easing feitos do zero em JavaScript puro.</p>
+              <span class="tags">HTML · CSS · JS</span>
+            </a>
+            <div class="card" data-a="scale" data-d="0.55">
+              <span class="status wip">Em produção</span>
+              <h3>Bot de WhatsApp</h3>
+              <p>Atendimento automático com a API oficial do WhatsApp Business, recebendo mensagens por webhook.</p>
+              <span class="tags">Node.js · API · Webhooks</span>
+            </div>
+            <div class="card" data-a="scale" data-d="0.7">
+              <span class="status">Na fila</span>
+              <h3>Relatórios automáticos</h3>
+              <p>Script que lê dados de planilha ou API e entrega o relatório pronto, sem trabalho manual.</p>
+              <span class="tags">Python · pandas</span>
+            </div>
+            <div class="card" data-a="scale" data-d="0.85">
+              <span class="status">Na fila</span>
+              <h3>App full-stack</h3>
+              <p>Front-end, API e banco de dados, publicado online, cobrindo o ciclo completo.</p>
+              <span class="tags">React · API · SQL</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Cena 4: Experiência, desenhada como camadas de uma timeline -->
+        <section class="scene" data-scene="experiencia">
+          <h2 class="scene-title" data-a="left" data-d="0.1" data-main>Experiência</h2>
+          <div class="gantt">
+            <div class="years" data-a="fade" data-d="0.3">
+              <span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span><span>2027</span>
+            </div>
+            <div class="g-row" style="--from:7.2;--to:7.83;--c:var(--l-sea)">
+              <span class="g-label" data-a="fade" data-d="0.5">Analista de Suporte CRM e Automação · Cartão de TODOS · remoto</span>
+              <span class="g-bar" data-a="bar" data-d="0.5"></span>
+            </div>
+            <div class="g-row" style="--from:4.0;--to:9.0;--c:var(--l-lav)">
+              <span class="g-label" data-a="fade" data-d="0.65">Sistemas de Informação · UFOP</span>
+              <span class="g-bar" data-a="bar" data-d="0.65"></span>
+            </div>
+            <div class="g-row" style="--from:5.8;--to:6.8;--c:var(--l-pink)">
+              <span class="g-label" data-a="fade" data-d="0.8">Editor de vídeo e motion designer · Total History</span>
+              <span class="g-bar" data-a="bar" data-d="0.8"></span>
+            </div>
+            <div class="g-row" style="--from:2.7;--to:3.9;--c:var(--l-peach)">
+              <span class="g-label" data-a="fade" data-d="0.95">Assistente de TI · Grupo Exponenciar</span>
+              <span class="g-bar" data-a="bar" data-d="0.95"></span>
+            </div>
+            <div class="g-row" style="--from:0.6;--to:1.6;--c:var(--l-yellow)">
+              <span class="g-label" data-a="fade" data-d="1.1">Estagiário de TI · Oi</span>
+              <span class="g-bar" data-a="bar" data-d="1.1"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Cena 5: Contato -->
+        <section class="scene" data-scene="contato">
+          <p class="kicker" data-a="fade" data-d="0.1">Disponível para estágio remoto em desenvolvimento</p>
+          <h2 class="contact-title" data-a="scale" data-d="0.25" data-main>Vamos conversar?</h2>
+          <div class="contact-links" data-a="up" data-d="0.7">
+            <a href="https://www.linkedin.com/in/sobrosa9" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/sobrosaa" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="viewer-bar">
+      <button type="button" id="prevBtn" aria-label="Cena anterior">‹ Anterior</button>
+      <span class="tc small" id="viewerTc">0:00:00:00</span>
+      <button type="button" id="guidesBtn" aria-pressed="false">Áreas seguras</button>
+      <button type="button" id="nextBtn" aria-label="Próxima cena">Próxima ›</button>
+    </div>
+  </main>
+
+  <!-- Painel de propriedades: valores ao vivo da camada selecionada -->
+  <aside class="panel props" aria-label="Propriedades">
+    <div class="panel-tab">Controles: <span id="propsLayer">Intro</span></div>
+    <div class="panel-body">
+      <div class="prop-group">Transformar</div>
+      <dl class="prop-list">
+        <dt>Ponto de ancoragem</dt><dd><span>960,0</span>, <span>540,0</span></dd>
+        <dt>Posição</dt><dd><span id="pX">960,0</span>, <span id="pY">540,0</span></dd>
+        <dt>Escala</dt><dd><span id="pS">100,0</span> %</dd>
+        <dt>Rotação</dt><dd>0x <span id="pR">+0,0</span>°</dd>
+        <dt>Opacidade</dt><dd><span id="pO">100</span> %</dd>
+      </dl>
+      <div class="prop-group">Informações</div>
+      <dl class="prop-list info">
+        <dt>Quadro</dt><dd id="iFrame">0</dd>
+        <dt>Estado</dt><dd id="iState">Pausado</dd>
+        <dt>Easing</dt><dd id="iEase">easeOutBack</dd>
+      </dl>
+      <div class="prop-group">Atalhos</div>
+      <ul class="keys">
+        <li><kbd>Espaço</kbd> reproduzir / pausar</li>
+        <li><kbd>←</kbd> <kbd>→</kbd> quadro a quadro</li>
+        <li><kbd>Shift</kbd> + <kbd>→</kbd> próxima cena</li>
+        <li><kbd>Home</kbd> <kbd>End</kbd> início / fim</li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Linha do tempo -->
+  <section class="panel timeline" aria-label="Linha do tempo">
+    <div class="panel-tab">Linha do tempo: Lucas Sobrosa</div>
+    <div class="tl-head">
+      <span class="tc big" id="tc">0:00:00:00</span>
+      <span class="frames" id="frameCount">00000 (24,00 qps)</span>
+      <button type="button" class="play" id="playBtn" aria-label="Reproduzir">▶</button>
+    </div>
+    <div class="tl-body">
+      <div class="tl-names">
+        <div class="tl-names-head"><span>#</span>Nome da camada</div>
+        <ul id="layerNames"></ul>
+      </div>
+      <div class="tl-tracks" id="tracks" tabindex="0" role="slider" aria-label="Linha do tempo, em quadros" aria-valuemin="0" aria-valuemax="528" aria-valuenow="0">
+        <div class="ruler" id="ruler"></div>
+        <ul class="rows" id="layerRows"></ul>
+        <div class="playhead" id="playhead" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+</div>
+<!--/BODY-->
+  <script src="script.js"></script>
+</body>
+</html>
