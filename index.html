@@ -27,7 +27,7 @@
     <div class="panel-body">
       <div class="proj-meta">
         <span class="thumb" aria-hidden="true"></span>
-        <div><strong>Lucas Sobrosa</strong><br>1920 × 1080 (1,00)<br>Δ 0:00:22:00, 24,00 qps</div>
+        <div><strong>Lucas Sobrosa</strong><br>1920 × 1080 (1,00)<br>Δ <span id="compDur">0:00:33:00</span>, 24,00 qps</div>
       </div>
       <div class="tree">
         <div class="folder">Composições</div>
@@ -86,10 +86,10 @@
         <section class="scene" data-scene="projetos">
           <h2 class="scene-title" data-a="left" data-d="0.1" data-main>Projetos</h2>
           <div class="cards">
-            <a class="card" href="https://github.com/sobrosaa" target="_blank" rel="noopener" data-a="scale" data-d="0.4">
+            <a class="card" href="https://github.com/sobrosaa/sobrosaa.github.io" target="_blank" rel="noopener" data-a="scale" data-d="0.4">
               <span class="status live">Publicado</span>
               <h3>Este portfólio</h3>
-              <p>Um site que é um editor de vídeo. Timeline, keyframes e easing feitos do zero em JavaScript puro.</p>
+              <p>Um site que é um editor de vídeo: timeline, editor de curvas Bézier e expressões ao vivo, em JavaScript puro.</p>
               <span class="tags">HTML · CSS · JS</span>
             </a>
             <div class="card" data-a="scale" data-d="0.55">
@@ -113,7 +113,70 @@
           </div>
         </section>
 
-        <!-- Cena 4: Experiência, desenhada como camadas de uma timeline -->
+
+        <!-- Cena 4: Por dentro (estudo de caso técnico) -->
+        <section class="scene" data-scene="pordentro">
+          <h2 class="scene-title" data-a="left" data-d="0.1" data-main>Por dentro</h2>
+          <div class="inside">
+            <div class="inside-main">
+              <ol class="flow" aria-label="Fluxo de renderização">
+                <li data-a="up" data-d="0.4"><code>time</code><span>um número, em segundos</span></li>
+                <li class="arrow" data-a="fade" data-d="0.55" aria-hidden="true"></li>
+                <li data-a="up" data-d="0.6"><code>render(time)</code><span>calcula o quadro inteiro</span></li>
+                <li class="arrow" data-a="fade" data-d="0.75" aria-hidden="true"></li>
+                <li data-a="up" data-d="0.8"><code>DOM</code><span>transform e opacity</span></li>
+              </ol>
+              <pre class="code" data-a="up" data-d="1.0"><code><span class="k">function</span> <span class="f">render</span>(t) {
+  <span class="k">const</span> local = t - scene.start;
+  scene.items.<span class="f">forEach</span>((it) =&gt; {
+    <span class="k">const</span> p = <span class="f">clamp</span>((local - it.delay) / it.dur);
+    <span class="k">const</span> e = ease[it.curve](p);
+    it.el.style.transform = <span class="s">`translateY(${(1 - e) * 4}u)`</span>;
+    it.el.style.opacity = p;
+  });
+}</code></pre>
+            </div>
+            <ul class="specs">
+              <li data-a="up" data-d="1.2"><b>0</b>dependências: nada de React, GSAP ou jQuery</li>
+              <li data-a="up" data-d="1.3"><b>1</b>relógio controla a página inteira</li>
+              <li data-a="up" data-d="1.4"><b>24</b>quadros por segundo no timecode; o render acompanha a taxa da tela</li>
+              <li data-a="up" data-d="1.5"><b>3</b>arquivos: HTML, CSS e JavaScript</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Cena 5: Laboratório de expressões -->
+        <section class="scene" data-scene="lab">
+          <h2 class="scene-title" data-a="left" data-d="0.1" data-main>Expressões</h2>
+          <div class="lab">
+            <div class="lab-stage" data-a="scale" data-d="0.35">
+              <div class="lab-shape" id="labShape"><span>JS</span></div>
+              <span class="lab-cap">Forma 1 · <span id="labReadout">y 0 · 0° · 100%</span></span>
+            </div>
+            <div class="lab-panel" data-a="up" data-d="0.5">
+              <p class="lab-intro">No After Effects, expressões são JavaScript. Aqui também: edite o código e a camada responde a cada quadro.</p>
+              <label class="expr" for="exprY"><span>Posição Y</span>
+                <input id="exprY" type="text" spellcheck="false" autocomplete="off" value="Math.sin(time * 3) * 40">
+              </label>
+              <label class="expr" for="exprR"><span>Rotação</span>
+                <input id="exprR" type="text" spellcheck="false" autocomplete="off" value="time * 90">
+              </label>
+              <label class="expr" for="exprS"><span>Escala</span>
+                <input id="exprS" type="text" spellcheck="false" autocomplete="off" value="100 + wiggle(2, 12)">
+              </label>
+              <p class="expr-error" id="exprError" role="status"></p>
+              <div class="presets" id="labPresets">
+                <button type="button" data-y="Math.sin(time * 3) * 40" data-r="time * 90" data-s="100 + wiggle(2, 12)">Flutuar</button>
+                <button type="button" data-y="wiggle(4, 30)" data-r="wiggle(3, 25)" data-s="100 + wiggle(5, 15)">Wiggle</button>
+                <button type="button" data-y="bounce(1.2, 90) + 45" data-r="0" data-s="100 + Math.abs(Math.cos(time * Math.PI * 1.2)) * -12">Quicar</button>
+                <button type="button" data-y="0" data-r="(time % 1.5) < 0.75 ? 0 : 180 * ease((time % 0.75) / 0.75)" data-s="100">Virar</button>
+              </div>
+              <p class="lab-help">Disponível: <code>time</code>, <code>wiggle(freq, amp)</code>, <code>bounce(freq, amp)</code>, <code>ease(x)</code> e tudo de <code>Math</code>.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Cena 6: Experiência, desenhada como camadas de uma timeline -->
         <section class="scene" data-scene="experiencia">
           <h2 class="scene-title" data-a="left" data-d="0.1" data-main>Experiência</h2>
           <div class="gantt">
@@ -143,7 +206,7 @@
           </div>
         </section>
 
-        <!-- Cena 5: Contato -->
+        <!-- Cena 7: Contato -->
         <section class="scene" data-scene="contato">
           <p class="kicker" data-a="fade" data-d="0.1">Disponível para estágio remoto em desenvolvimento</p>
           <h2 class="contact-title" data-a="scale" data-d="0.25" data-main>Vamos conversar?</h2>
@@ -180,6 +243,12 @@
         <dt>Estado</dt><dd id="iState">Pausado</dd>
         <dt>Easing</dt><dd id="iEase">easeOutBack</dd>
       </dl>
+      <div class="prop-group">Desempenho</div>
+      <dl class="prop-list info">
+        <dt>Quadros/s</dt><dd id="perfFps">—</dd>
+        <dt>render()</dt><dd id="perfMs">—</dd>
+        <dt>Estilos/quadro</dt><dd id="perfWrites">—</dd>
+      </dl>
       <div class="prop-group">Atalhos</div>
       <ul class="keys">
         <li><kbd>Espaço</kbd> reproduzir / pausar</li>
@@ -192,7 +261,11 @@
 
   <!-- Linha do tempo -->
   <section class="panel timeline" aria-label="Linha do tempo">
-    <div class="panel-tab">Linha do tempo: Lucas Sobrosa</div>
+    <div class="panel-tab tabs" role="tablist">
+      <button type="button" role="tab" id="tabTimeline" aria-selected="true" aria-controls="viewTimeline">Linha do tempo: Lucas Sobrosa</button>
+      <button type="button" role="tab" id="tabGraph" aria-selected="false" aria-controls="viewGraph">Editor de gráficos</button>
+    </div>
+    <div class="tl-view" id="viewTimeline" role="tabpanel" aria-labelledby="tabTimeline">
     <div class="tl-head">
       <span class="tc big" id="tc">0:00:00:00</span>
       <span class="frames" id="frameCount">00000 (24,00 qps)</span>
@@ -207,6 +280,34 @@
         <div class="ruler" id="ruler"></div>
         <ul class="rows" id="layerRows"></ul>
         <div class="playhead" id="playhead" aria-hidden="true"></div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Editor de gráficos: curva Bézier editável -->
+    <div class="ge-view" id="viewGraph" role="tabpanel" aria-labelledby="tabGraph" hidden>
+      <div class="ge-presets" id="gePresets" aria-label="Curvas prontas"></div>
+      <div class="ge-canvas">
+        <svg id="geSvg" viewBox="0 0 320 380" preserveAspectRatio="xMidYMid meet" aria-label="Curva de velocidade. Arraste as duas alças.">
+          <g id="geGrid"></g>
+          <line id="geL1" class="ge-handle-line"></line>
+          <line id="geL2" class="ge-handle-line"></line>
+          <path id="geCurve" class="ge-curve"></path>
+          <circle id="geDot" class="ge-dot" r="5"></circle>
+          <circle id="geH1" class="ge-handle" r="8" tabindex="0" aria-label="Alça 1"></circle>
+          <circle id="geH2" class="ge-handle" r="8" tabindex="0" aria-label="Alça 2"></circle>
+        </svg>
+      </div>
+      <div class="ge-side">
+        <div class="ge-track" aria-hidden="true"><i id="geBox"></i></div>
+        <p class="ge-label">CSS</p>
+        <code class="ge-code" id="geCss">cubic-bezier(0.34, 1.56, 0.64, 1)</code>
+        <p class="ge-label">Como funciona</p>
+        <p class="ge-explain">O eixo X é o tempo e o Y é o valor. Para cada quadro, o código encontra o <i>t</i> da curva com o método de Newton e devolve o Y. Valores acima de 1 são o "passar do ponto".</p>
+        <div class="ge-actions">
+          <button type="button" id="geApply" class="primary">Aplicar no nome</button>
+          <button type="button" id="geCopy">Copiar CSS</button>
+        </div>
       </div>
     </div>
   </section>
